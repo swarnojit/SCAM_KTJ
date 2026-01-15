@@ -1,0 +1,483 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f7fafc;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.header h2 {
+    font-size: 20px;
+    color: #2d3748;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* Google Translate Widget Styling - Clean & Minimal */
+#google_translate_element {
+    display: inline-block;
+}
+
+.goog-te-gadget {
+    font-family: inherit !important;
+    font-size: 0 !important;
+}
+
+.goog-te-gadget-simple {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #e5e7eb !important;
+    padding: 8px 12px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    color: #374151 !important;
+    display: inline-block !important;
+}
+
+.goog-te-gadget-simple:hover {
+    background-color: #e5e7eb !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value span {
+    color: #374151 !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+/* Hide the annoying top banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+/* Hide the Google Translate toolbar that appears at top */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+/* Fix body position when translation is active */
+body.translated-ltr {
+    top: 0 !important;
+}
+
+/* Hide Google's original text popup */
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+/* Style the language dropdown menu */
+.goog-te-menu-frame {
+    max-height: 400px !important;
+    overflow-y: auto !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.content {
+    padding: 20px;
+}
+
+.search-section {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-icon {
+    width: 50px;
+    height: 50px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.search-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: white;
+}
+
+.search-text h3 {
+    font-size: 16px;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.input-wrapper:focus-within {
+    border-color: #10b981;
+}
+
+.search-input-icon {
+    padding: 0 15px;
+    color: #cbd5e0;
+}
+
+input {
+    flex: 1;
+    padding: 14px 0;
+    border: none;
+    font-size: 15px;
+    outline: none;
+}
+
+.scan-btn {
+    background: #10b981;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scan-btn:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.scan-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+.recent-scans {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid #e2e8f0;
+}
+
+.scan-item {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.scan-item:hover {
+    background: #f7fafc;
+}
+
+.scan-item:last-child {
+    border-bottom: none;
+}
+
+.scan-link {
+    font-size: 14px;
+    color: #4a5568;
+    word-break: break-all;
+    flex: 1;
+}
+
+.status-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.status-icon.safe {
+    background: #d1fae5;
+}
+
+.status-icon.safe svg {
+    width: 14px;
+    height: 14px;
+    fill: #10b981;
+}
+
+.status-icon.danger {
+    background: #fee2e2;
+}
+
+.status-icon.danger svg {
+    width: 14px;
+    height: 14px;
+    fill: #ef4444;
+}
+
+.tips-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.tip-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.tip-item:last-child {
+    margin-bottom: 0;
+}
+
+.tip-bullet {
+    width: 6px;
+    height: 6px;
+    background: #718096;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    width: 100%;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+.action-btn:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #10b981;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.result-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-icon.safe {
+    background: #d1fae5;
+}
+
+.result-icon.safe svg {
+    width: 40px;
+    height: 40px;
+    fill: #10b981;
+}
+
+.result-icon.warning {
+    background: #fef3c7;
+}
+
+.result-icon.warning svg {
+    width: 40px;
+    height: 40px;
+    fill: #f59e0b;
+}
+
+.result-icon.danger {
+    background: #fee2e2;
+}
+
+.result-icon.danger svg {
+    width: 40px;
+    height: 40px;
+    fill: #ef4444;
+}
+
+.result-label {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.result-score {
+    font-size: 16px;
+    color: #718096;
+    margin-bottom: 20px;
+}
+
+.result-reasons {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.result-reasons h4 {
+    font-size: 14px;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.reason-item {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #4a5568;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.reason-item:last-child {
+    border-bottom: none;
+}
+
+.close-btn {
+    width: 100%;
+    padding: 14px;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #cbd5e0;
+}
