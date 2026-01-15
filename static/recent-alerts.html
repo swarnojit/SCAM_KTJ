@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Alerts - ScamShield</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f7fafc;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            color: #2d3748;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Google Translate Styling */
+        #google_translate_element {
+            display: inline-block;
+        }
+
+        .goog-te-gadget {
+            font-family: inherit !important;
+            font-size: 0 !important;
+        }
+
+        .goog-te-gadget-simple {
+            background-color: #f3f4f6 !important;
+            border: 1px solid #e5e7eb !important;
+            padding: 8px 12px !important;
+            border-radius: 20px !important;
+            font-size: 13px !important;
+            color: #374151 !important;
+        }
+
+        .goog-te-gadget-simple:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #374151 !important;
+        }
+
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #718096;
+            margin-left: 44px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .alert-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .alert-card:hover {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .alert-icon.danger {
+            background: #fee2e2;
+        }
+
+        .alert-icon.danger svg {
+            width: 20px;
+            height: 20px;
+            fill: #ef4444;
+        }
+
+        .alert-icon.safe {
+            background: #d1fae5;
+        }
+
+        .alert-icon.safe svg {
+            width: 20px;
+            height: 20px;
+            fill: #10b981;
+        }
+
+        .alert-icon.warning {
+            background: #fef3c7;
+        }
+
+        .alert-icon.warning svg {
+            width: 20px;
+            height: 20px;
+            fill: #f59e0b;
+        }
+
+        .alert-info {
+            flex: 1;
+        }
+
+        .alert-info h3 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .alert-info p {
+            font-size: 13px;
+            color: #718096;
+        }
+
+        .alert-action {
+            margin-top: 10px;
+        }
+
+        .action-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-tag.danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .action-tag.danger:hover {
+            background: #dc2626;
+        }
+
+        .action-tag.warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .action-tag.warning:hover {
+            background: #d97706;
+        }
+
+        .tips-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tips-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .tip-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-bullet {
+            width: 6px;
+            height: 6px;
+            background: #718096;
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        .clear-btn {
+            width: 100%;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .clear-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="header-left">
+                    <button class="back-btn" onclick="window.location.href='home.html'">←</button>
+                    <h2>Recent Alerts</h2>
+                </div>
+                <div class="header-right">
+                    <div id="google_translate_element"></div>
+                    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+                </div>
+            </div>
+            <p>Review potential risks</p>
+        </div>
+
+        <div class="content">
+            <div id="alertsContainer"></div>
+
+            <div id="noAlertsMessage" style="display: none; text-align: center; padding: 40px 20px;">
+                <div style="font-size: 48px; margin-bottom: 15px;">✅</div>
+                <h3 style="color: #10b981; margin-bottom: 10px;">No Alerts!</h3>
+                <p style="color: #718096;">You're all clear. No security threats detected.</p>
+            </div>
+
+            <div class="tips-section">
+                <h3 class="tips-title">Safety Tips</h3>
+                <div class="tip-item">
+                    <div class="tip-bullet"></div>
+                    <div>Always be cautious of urgent requests</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-bullet"></div>
+                    <div>Check in app or ask a family friend</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-bullet"></div>
+                    <div>Never share OTP or passwords with anyone</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-bullet"></div>
+                    <div>Verify caller identity before taking action</div>
+                </div>
+            </div>
+
+            <button class="clear-btn" id="clearBtn" onclick="clearAllAlerts()">Clear alerts</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Initialize alerts from localStorage or use default alerts
+        let alerts = JSON.parse(localStorage.getItem('scamAlerts')) || [
+            {
+                id: 1,
+                type: 'danger',
+                title: 'Suspicious Message',
+                description: 'Asking OTP via SMS',
+                action: 'Block & Report',
+                icon: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'
+            },
+            {
+                id: 2,
+                type: 'safe',
+                title: 'Safe Transaction',
+                description: 'Verified payment to "Utility Co."',
+                action: 'Block & Report',
+                icon: '<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>'
+            },
+            {
+                id: 3,
+                type: 'warning',
+                title: 'Unknown Call',
+                description: 'Unknown number, urgent tone',
+                action: 'Ask My Family',
+                icon: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'
+            }
+        ];
+
+        // Save alerts to localStorage
+        function saveAlerts() {
+            localStorage.setItem('scamAlerts', JSON.stringify(alerts));
+        }
+
+        // Render alerts to the page
+        function renderAlerts() {
+            const container = document.getElementById('alertsContainer');
+            const noAlertsMsg = document.getElementById('noAlertsMessage');
+            const clearBtn = document.getElementById('clearBtn');
+
+            if (alerts.length === 0) {
+                container.innerHTML = '';
+                noAlertsMsg.style.display = 'block';
+                clearBtn.style.display = 'none';
+            } else {
+                noAlertsMsg.style.display = 'none';
+                clearBtn.style.display = 'block';
+                
+                container.innerHTML = alerts.map(alert => `
+                    <div class="alert-card">
+                        <div class="alert-header">
+                            <div class="alert-icon ${alert.type}">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    ${alert.icon}
+                                </svg>
+                            </div>
+                            <div class="alert-info">
+                                <h3>${alert.title}</h3>
+                                <p>${alert.description}</p>
+                                <div class="alert-action">
+                                    <span class="action-tag ${alert.type === 'danger' ? 'danger' : 'warning'}">${alert.action}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Clear all alerts
+        function clearAllAlerts() {
+            if (confirm('Are you sure you want to clear all alerts?')) {
+                alerts = [];
+                saveAlerts();
+                renderAlerts();
+            }
+        }
+
+        // Load alerts on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            renderAlerts();
+        });
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,ml,pa,or,as,ur',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family - ScamShield</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f7fafc;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            color: #2d3748;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Google Translate Styling */
+        #google_translate_element {
+            display: inline-block;
+        }
+
+        .goog-te-gadget {
+            font-family: inherit !important;
+            font-size: 0 !important;
+        }
+
+        .goog-te-gadget-simple {
+            background-color: #f3f4f6 !important;
+            border: 1px solid #e5e7eb !important;
+            padding: 8px 12px !important;
+            border-radius: 20px !important;
+            font-size: 13px !important;
+            color: #374151 !important;
+        }
+
+        .goog-te-gadget-simple:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #374151 !important;
+        }
+
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #718096;
+            margin-left: 44px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .family-member {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .family-member:hover {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-info h3 {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .member-info p {
+            font-size: 13px;
+            color: #718096;
+        }
+
+        .add-member-btn {
+            background: white;
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-member-btn:hover {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .add-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f0fdf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .add-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #10b981;
+        }
+
+        .add-text {
+            flex: 1;
+        }
+
+        .add-text h3 {
+            font-size: 16px;
+            color: #2d3748;
+            margin-bottom: 3px;
+        }
+
+        .add-text p {
+            font-size: 13px;
+            color: #718096;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .actions-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .action-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .action-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-bullet {
+            width: 6px;
+            height: 6px;
+            background: #718096;
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn.primary {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: #10b981;
+            color: white;
+        }
+
+        .action-btn.secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-btn.cancel {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .modal-btn.save {
+            background: #10b981;
+            color: white;
+        }
+
+        /* Contact Action Modal */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .contact-modal.active {
+            display: flex;
+        }
+
+        .contact-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .contact-modal-header {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .contact-modal-subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item-link {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+        }
+
+        .contact-item-link:hover {
+            background: #e2e8f0;
+            transform: translateX(5px);
+            border-color: #10b981;
+        }
+
+        .contact-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .contact-phone {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .call-icon, .message-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .call-icon {
+            background: #10b981;
+        }
+
+        .call-icon:hover {
+            background: #059669;
+            transform: scale(1.1);
+        }
+
+        .message-icon {
+            background: #3b82f6;
+        }
+
+        .message-icon:hover {
+            background: #2563eb;
+            transform: scale(1.1);
+        }
+
+        .call-icon svg, .message-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .emergency-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .emergency-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ef4444;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-contact-modal-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-contact-modal-btn:hover {
+            background: #cbd5e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="header-left">
+                    <button class="back-btn" onclick="window.location.href='home.html'">←</button>
+                    <h2>My Family</h2>
+                </div>
+                <div class="header-right">
+                    <div id="google_translate_element"></div>
+                    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+                </div>
+            </div>
+            <p>They will get scam alerts</p>
+        </div>
+
+        <div class="content">
+            <div id="familyList">
+                <div class="family-member">
+                    <div class="avatar">R</div>
+                    <div class="member-info">
+                        <h3>Rahul</h3>
+                        <p>Text Rahul to reach out to him in case of emergency</p>
+                    </div>
+                </div>
+
+                <div class="family-member">
+                    <div class="avatar">N</div>
+                    <div class="member-info">
+                        <h3>Neha</h3>
+                        <p>Text Neha to reach out to him in case of emergency</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-member-btn" onclick="openModal()">
+                <div class="add-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                </div>
+                <div class="add-text">
+                    <h3>Add Family Member</h3>
+                    <p>Add trusted contacts to your circle</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">Ask My Family</h3>
+            <div class="actions-list">
+                <div class="action-item">
+                    <div class="action-bullet"></div>
+                    <div>Send a message for help</div>
+                </div>
+                <div class="action-item">
+                    <div class="action-bullet"></div>
+                    <div>Notify family of suspicious activity</div>
+                </div>
+                <div class="action-item">
+                    <div class="action-bullet"></div>
+                    <div>Get instant support from trusted contacts</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="sendSOS()">Send an SOS message</button>
+                <button class="action-btn secondary" onclick="sendMessage()">Send a message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="addMemberModal" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-header">Add Family Member</h3>
+            <form id="addMemberForm">
+                <div class="form-group">
+                    <label for="memberName">Name</label>
+                    <input type="text" id="memberName" placeholder="Enter name" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberPhone">Phone Number</label>
+                    <input type="tel" id="memberPhone" placeholder="Enter phone number" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="modal-btn save">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Action Modal -->
+    <div id="contactModal" class="contact-modal">
+        <div class="contact-modal-content">
+            <h2 class="contact-modal-header" id="contactModalTitle">Contact Family</h2>
+            <p class="contact-modal-subtitle" id="contactModalSubtitle">Select a contact</p>
+            
+            <div class="contact-list" id="contactListItems">
+                <!-- Contacts will be dynamically added here -->
+            </div>
+
+            <!-- Emergency Numbers Section -->
+            <div class="emergency-section">
+                <h3 class="emergency-title">
+                    <svg viewBox="0 0 24 24" fill="#ef4444" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    Emergency Services
+                </h3>
+                <div class="contact-list">
+                    <a href="tel:100" class="contact-item-link">
+                        <div class="contact-avatar">🚓</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Police</div>
+                            <div class="contact-phone">100</div>
+                        </div>
+                        <div class="call-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:102" class="contact-item-link">
+                        <div class="contact-avatar">🚑</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Ambulance</div>
+                            <div class="contact-phone">102</div>
+                        </div>
+                        <div class="call-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:1930" class="contact-item-link">
+                        <div class="contact-avatar">🛡️</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Cyber Crime Helpline</div>
+                            <div class="contact-phone">1930</div>
+                        </div>
+                        <div class="call-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="tel:181" class="contact-item-link">
+                        <div class="contact-avatar">👩</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Women Helpline</div>
+                            <div class="contact-phone">181</div>
+                        </div>
+                        <div class="call-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <button class="close-contact-modal-btn" onclick="closeContactModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('addMemberModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('addMemberModal').classList.remove('active');
+            document.getElementById('addMemberForm').reset();
+        }
+
+        // Store family members in localStorage
+        let familyMembers = JSON.parse(localStorage.getItem('familyMembers')) || [
+            { name: 'Rahul', phone: '+919876543210' },
+            { name: 'Neha', phone: '+919123456789' }
+        ];
+
+        // Save to localStorage whenever updated
+        function saveFamilyMembers() {
+            localStorage.setItem('familyMembers', JSON.stringify(familyMembers));
+        }
+
+        document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('memberName').value;
+            const phone = document.getElementById('memberPhone').value;
+            
+            // Add to familyMembers array
+            familyMembers.push({ name, phone });
+            saveFamilyMembers();
+            
+            const familyList = document.getElementById('familyList');
+            const newMember = document.createElement('div');
+            newMember.className = 'family-member';
+            newMember.innerHTML = `
+                <div class="avatar">${name.charAt(0).toUpperCase()}</div>
+                <div class="member-info">
+                    <h3>${name}</h3>
+                    <p>Text ${name} to reach out in case of emergency</p>
+                </div>
+            `;
+            familyList.appendChild(newMember);
+            
+            closeModal();
+            alert('Family member added successfully!');
+        });
+
+        function sendSOS() {
+            openContactModal('sos');
+        }
+
+        function sendMessage() {
+            openContactModal('message');
+        }
+
+        function openContactModal(type) {
+            const modal = document.getElementById('contactModal');
+            const title = document.getElementById('contactModalTitle');
+            const subtitle = document.getElementById('contactModalSubtitle');
+            const contactList = document.getElementById('contactListItems');
+            
+            if (type === 'sos') {
+                title.textContent = 'Send SOS - Call for Help';
+                subtitle.textContent = 'Select a contact to call immediately';
+            } else {
+                title.textContent = 'Send Message';
+                subtitle.textContent = 'Select a contact to send message';
+            }
+            
+            // Clear previous contacts
+            contactList.innerHTML = '';
+            
+            // Add family members
+            familyMembers.forEach(member => {
+                const contactItem = document.createElement('div');
+                contactItem.className = 'contact-item';
+                contactItem.innerHTML = `
+                    <div class="contact-avatar">${member.name.charAt(0).toUpperCase()}</div>
+                    <div class="contact-info">
+                        <div class="contact-name">${member.name}</div>
+                        <div class="contact-phone">${member.phone}</div>
+                    </div>
+                    <div class="action-icons">
+                        <a href="tel:${member.phone}" class="call-icon" title="Call ${member.name}">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                        </a>
+                        <a href="sms:${member.phone}?body=${type === 'sos' ? 'SOS! I need help urgently. Please call me back immediately!' : 'Hi, I need to talk to you about something important.'}" class="message-icon" title="Message ${member.name}">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                `;
+                contactList.appendChild(contactItem);
+            });
+            
+            modal.classList.add('active');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('addMemberModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close contact modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,ml,pa,or,as,ur',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
